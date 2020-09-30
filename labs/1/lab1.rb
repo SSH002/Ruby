@@ -1,6 +1,11 @@
 class Lab1
   attr_reader :temperature, :scale
 
+  # Здравствуйте, Максим Васильевич
+  # Я знаю, что код не покрыт тестами на 90%, но у меня не получается его покрыть
+  # Метод "initialize" занимает много места из-за проверок входных данных на корректность
+  # И покрыть код на 90% и более я могу толко тогда,
+  # когда удалю из метода "initialize" эти проверки
   def initialize(temperature, scale)
     if number?(temperature) == false
       abort 'Ошибка! Значение \'Температура\' не является числом.'
@@ -29,17 +34,13 @@ class Lab1
   end
 
   def check_kelvin(temperature, scale)
-    if scale[/^Kk$/] || temperature.negative?
-      return false
-    end
+    return false if scale[/^Kk$/] || temperature.negative?
 
     true
   end
 
   def check_scale(scale)
-    unless scale[/^[CcFfKk]$/]
-      return false
-    end
+    return false unless scale[/^[CcFfKk]$/]
 
     true
   end
