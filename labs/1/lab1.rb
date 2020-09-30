@@ -29,15 +29,15 @@ class Lab1
   end
 
   def check_kelvin(temperature, scale)
-    if scale.include?('K') && scale.include?('k') || temperature.negative?
+    if scale[/^Kk$/] || temperature.negative?
       return false
     end
 
     true
   end
 
-  def check_scale(sc)
-    if sc != 'C' && sc != 'K' && sc != 'F' && sc != 'c' && sc != 'k' && sc != 'f'
+  def check_scale(scale)
+    unless scale[/^[CcFfKk]$/]
       return false
     end
 
@@ -50,27 +50,27 @@ class Lab1
       exit
     end
 
-    if (@scale == 'C' || @scale == 'c') && (scale == 'K' || scale == 'k')
+    if @scale[/^[Cc]$/] && scale[/^[Kk]$/]
       @scale = 'K'
       @temperature += 273.15
 
-    elsif (@scale == 'C' || @scale == 'c') && (scale == 'F' || scale == 'f')
+    elsif @scale[/^[Cc]$/] && scale[/^[Ff]$/]
       @scale = 'F'
       @temperature = 9 * @temperature / 5 + 32
 
-    elsif (@scale == 'K' || @scale == 'k') && (scale == 'C' || scale == 'c')
+    elsif @scale[/^[Kk]$/] && scale[/^[Cc]$/]
       @scale = 'C'
       @temperature -= 273.15
 
-    elsif (@scale == 'K' || @scale == 'k') && (scale == 'F' || scale == 'f')
+    elsif @scale[/^[Kk]$/] && scale[/^[Ff]$/]
       @scale = 'F'
       @temperature = 9 * (@temperature - 273.15) / 5 + 32
 
-    elsif (@scale == 'F' || @scale == 'f') && (scale == 'C' || scale == 'c')
+    elsif @scale[/^[Ff]$/] && scale[/^[Cc]$/]
       @scale = 'C'
       @temperature = 5 * (@temperature - 32) / 9
 
-    elsif (@scale == 'F' || @scale == 'f') && (scale == 'K' || scale == 'k')
+    elsif @scale[/^[Ff]$/] && scale[/^[Kk]$/]
       @scale = 'K'
       @temperature = 5 * (@temperature - 32) / 9 + 273.15
     end
