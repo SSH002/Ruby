@@ -41,10 +41,10 @@ RSpec.describe Lab1 do
     context 'test_incorrect_scale' do
       it { expect(Lab1.new('86', 'F').check_scale('V')).to eq false }
     end
-    context 'test_correct_scale' do
+    context 'test_correct_kelvin' do
       it { expect(Lab1.new('300', 'K').check_kelvin(300, 'K')).to eq true }
     end
-    context 'test_incorrect_scale' do
+    context 'test_incorrect_kelvin' do
       it { expect(Lab1.new('86', 'F').check_kelvin(-300, 'k')).to eq false }
     end
   end
