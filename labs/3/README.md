@@ -4,7 +4,7 @@
 
 ## Таблица: https://rosstat.gov.ru/opendata/7708234640-totalnotmarried16th1819th
 
-## Запуск программы производится из папки "/2/lib"
+## Запуск программы производится из папки "/2"
 
 ruby main.rb
 

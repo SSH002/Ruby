@@ -46,31 +46,52 @@ class Temperature
       exit
     end
 
-    if @scale[/^[Cc]$/] && scale[/^[Kk]$/]
-      @scale = 'K'
+    if @scale[/^[Cc]$/]
+      converse_c(scale)
+
+    elsif @scale[/^[Kk]$/]
+      converse_k(scale)
+
+    elsif @scale[/^[Ff]$/]
+      converse_f(scale)
+    end
+  end
+
+  def converse_c(scale)
+    if scale[/^[Kk]$/]
       @temperature += 273.15
 
-    elsif @scale[/^[Cc]$/] && scale[/^[Ff]$/]
-      @scale = 'F'
+    elsif scale[/^[Ff]$/]
       @temperature = 9 * @temperature / 5 + 32
 
-    elsif @scale[/^[Kk]$/] && scale[/^[Cc]$/]
-      @scale = 'C'
+    end
+
+    @scale = scale
+    @temperature = @temperature.round(2)
+  end
+
+  def converse_k(scale)
+    if scale[/^[Cc]$/]
       @temperature -= 273.15
 
-    elsif @scale[/^[Kk]$/] && scale[/^[Ff]$/]
-      @scale = 'F'
+    elsif scale[/^[Ff]$/]
       @temperature = 9 * (@temperature - 273.15) / 5 + 32
 
-    elsif @scale[/^[Ff]$/] && scale[/^[Cc]$/]
-      @scale = 'C'
+    end
+
+    @scale = scale
+    @temperature = @temperature.round(2)
+  end
+
+  def converse_f(scale)
+    if scale[/^[Cc]$/]
       @temperature = 5 * (@temperature - 32) / 9
 
-    elsif @scale[/^[Ff]$/] && scale[/^[Kk]$/]
-      @scale = 'K'
+    elsif scale[/^[Kk]$/]
       @temperature = 5 * (@temperature - 32) / 9 + 273.15
     end
 
+    @scale = scale
     @temperature = @temperature.round(2)
   end
 end
