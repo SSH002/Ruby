@@ -4,18 +4,15 @@ class Temperature
   def initialize(temperature, scale)
     if number?(temperature) == false
       abort 'Ошибка! Значение \'Температура\' не является числом.'
-      exit
     end
     temperature = temperature.to_f
 
     if check_scale(scale) == false
       abort 'Ошибка! Неверное название шкалы. Обрабатываются только C, K и F.'
-      exit
     end
 
     if check_kelvin(temperature, scale) == false
       abort 'Ошибка! Температура по шакле Кельвина не может быть ниже нуля.'
-      exit
     end
 
     @temperature = temperature
@@ -42,8 +39,7 @@ class Temperature
 
   def converse(scale)
     if check_scale(scale) == false
-      puts 'Ошибка! Неверное название шкалы. Обрабатываются только C, K и F.'
-      exit
+      abort 'Ошибка! Неверное название шкалы. Обрабатываются только C, K и F.'
     end
 
     if @scale[/^[Cc]$/]

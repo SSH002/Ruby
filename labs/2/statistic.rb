@@ -11,8 +11,6 @@ class Statistic
     @maximum = 0
 
     (1...@reader.rows).each do |i|
-      next if @reader.data[i][0].instance_of? NilClass
-
       @maximum = @reader.data[i][0].to_f if @reader.data[i][0].to_f > @maximum
     end
 
@@ -23,8 +21,6 @@ class Statistic
     @minimum = 1_000_000
 
     (1...@reader.rows).each do |i|
-      next if @reader.data[i][0].instance_of? NilClass
-
       @minimum = @reader.data[i][0].to_f if @reader.data[i][0].to_f < @minimum
     end
 
@@ -36,8 +32,6 @@ class Statistic
     count = 0
 
     (1...@reader.rows).each do |i|
-      next if @reader.data[i][0].instance_of? NilClass
-
       @average += @reader.data[i][0].to_f
       count += 1
     end
@@ -47,16 +41,14 @@ class Statistic
 
   def search_bsv
     search_average
-    count = 0
+    count = -1
     sum = 0
 
     (1...@reader.rows).each do |i|
-      next if @reader.data[i][0].instance_of? NilClass
-
       sum += (@reader.data[i][0].to_f - @average)**2
       count += 1
     end
 
-    @bsv = (sum / (count - 1)).round(2)
+    @bsv = (sum / count).round(2)
   end
 end
