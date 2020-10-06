@@ -1,4 +1,4 @@
-require '../temperature.rb'
+require '../temperature'
 
 RSpec.describe Temperature do
   describe '.temperature' do

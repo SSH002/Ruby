@@ -1,4 +1,4 @@
-require_relative 'temperature.rb'
+require_relative 'temperature'
 
 print 'Введите значение \'Температура\': '
 temperature = gets

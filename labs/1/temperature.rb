@@ -1,21 +1,16 @@
 class Temperature
   attr_reader :temperature, :scale
 
-  def initialize(temperature, scale)
-    if number?(temperature) == false
-      abort 'Ошибка! Значение \'Температура\' не является числом.'
-    end
-    temperature = temperature.to_f
+  # 'temper' is temperature
+  def initialize(temper, scale)
+    abort 'Значение \'Температура\' не число.' if number?(temper) == false
+    temper = temper.to_f
 
-    if check_scale(scale) == false
-      abort 'Ошибка! Неверное название шкалы. Обрабатываются только C, K и F.'
-    end
+    abort 'Обрабатываются только шкалы C, K и F.' if check_scale(scale) == false
 
-    if check_kelvin(temperature, scale) == false
-      abort 'Ошибка! Температура по шакле Кельвина не может быть ниже нуля.'
-    end
+    abort 'Температура по Келвин выше 0' if check_kelvin(temper, scale) == false
 
-    @temperature = temperature
+    @temperature = temper
     @scale = scale
   end
 
@@ -38,9 +33,7 @@ class Temperature
   end
 
   def converse(scale)
-    if check_scale(scale) == false
-      abort 'Ошибка! Неверное название шкалы. Обрабатываются только C, K и F.'
-    end
+    abort 'Обрабатываются только шкалы C, K и F.' if check_scale(scale) == false
 
     if @scale[/^[Cc]$/]
       converse_c(scale)

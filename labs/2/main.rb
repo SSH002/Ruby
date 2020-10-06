@@ -1,4 +1,4 @@
-require_relative 'statistic.rb'
+require_relative 'statistic'
 
 obj = Statistic.new
 

@@ -1,4 +1,4 @@
-require_relative 'csv_reader.rb'
+require_relative 'csv_reader'
 
 class Statistic
   attr_reader :reader, :maximum, :minimum, :average, :bsv
