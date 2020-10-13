@@ -4,7 +4,7 @@ class Statistic
   attr_reader :reader, :maximum, :minimum, :average, :bsv
 
   def initialize
-    @reader = CSV_Reader.new
+    @reader = csv_reader.new
   end
 
   def search_maximum
