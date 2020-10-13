@@ -1,6 +1,6 @@
 require 'csv'
 
-class csv_reader
+class Reader
   attr_reader :data, :rows, :columns, :array
 
   def initialize
