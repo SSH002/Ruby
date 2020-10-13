@@ -1,4 +1,4 @@
-require './csv_reader'
+require './reader'
 require './statistic'
 
 RSpec.describe Statistic do
